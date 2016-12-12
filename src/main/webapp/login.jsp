@@ -4,7 +4,7 @@
 
 <body class="align">
     <div class="grid">
-        <h1>gimme my money</h1>
+        <h1 id="login_header">gimme my money</h1>
         <form action="login.do" method="POST" class="form login">
 
             <div class="form__field">

@@ -12,7 +12,7 @@ import java.util.List;
  * Performs authentication for users
  * Created by achen on 12/7/2016.
  */
-public class UserService {
+class UserService {
     public User authenticate(String username, String password) throws AuthenticationException {
         DatabaseAccessImplementation facade = new DatabaseAccessImplementation();
         User user = facade.getUserByUserName(username);
@@ -24,9 +24,5 @@ public class UserService {
         } else
             throw new AuthenticationException();
 
-    }
-
-    public List<Reimbursement> viewAllReimbursements() {
-        return new DatabaseAccessImplementation().getAllReimbursements();
     }
 }

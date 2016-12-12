@@ -1,6 +1,8 @@
 package com.revature.middle;
 
 import com.revature.beans.Reimbursement;
+import com.revature.beans.Status;
+import com.revature.beans.Type;
 import com.revature.beans.User;
 import com.revature.data.DatabaseAccessImplementation;
 
@@ -17,7 +19,14 @@ public class BusinessDelegate {
         return new UserService().authenticate(user, pass);
     }
 
+    public List<Type> getType() {
+        return new TypeService().getTypes();
+    }
     public List<Reimbursement> viewAllReimbursements() {
-        return new UserService().viewAllReimbursements();
+        return new ReimbursementService().viewAllReimbursements();
+    }
+
+    public List<Status> getStatus() {
+        return new StatusService().getStatuses();
     }
 }

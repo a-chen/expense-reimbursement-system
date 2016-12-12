@@ -24,6 +24,11 @@ public class FrontController {
         new MainController().login(request, response);
     }
 
+    public void checkLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        new MainController().checkLogin(request, response);
+    }
 
-
+    public void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        new MainController().logout(request, response);
+    }
 }

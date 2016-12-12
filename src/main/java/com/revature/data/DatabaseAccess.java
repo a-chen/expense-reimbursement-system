@@ -1,6 +1,8 @@
 package com.revature.data;
 
 import com.revature.beans.Reimbursement;
+import com.revature.beans.Status;
+import com.revature.beans.Type;
 import com.revature.beans.User;
 
 import java.sql.SQLException;
@@ -10,6 +12,8 @@ import java.util.List;
  * Created by achen on 12/7/2016.
  */
 public interface DatabaseAccess {
+
+    public List<Type> getTypes();
 
     public User getUserByUserName(String username) throws SQLException;
 
@@ -31,6 +35,5 @@ public interface DatabaseAccess {
 
     public void updateEmail(User user);
 
-
-
+    List<Status> getStatuses();
 }

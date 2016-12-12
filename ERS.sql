@@ -77,6 +77,33 @@ ALTER TABLE ers_user ADD CONSTRAINT user_email_unique UNIQUE (user_email);
 ALTER TABLE ers_user ADD CONSTRAINT user_roles_fk
   FOREIGN KEY (user_role_id) REFERENCES ers_user_roles (ers_user_role_id)
   ON DELETE CASCADE;
+
+/**
+	Create auto incrementing PK on Reimbursement
+**/
+-- Sequence 
+-- stores a number value you can use and increment
+create sequence reimbursement_seq 
+	start with 1
+	increment by 1;
+/
+-- Triggers
+-- 1. change the PK to sequence value
+create or replace trigger reimbursement_trigger
+  BEFORE INSERT ON ers_reimbursement
+  REFERENCING NEW AS N
+  FOR EACH ROW 
+    DECLARE
+      surrogate NUMBER;
+    BEGIN
+      -- get next sequence value
+      select reimbursement_seq.nextval
+      into surrogate
+      from dual;
+      -- assign the new statement's PK 
+      :N.reimb_id := surrogate; 
+    END;
+/
   
 /*******************************************************************************
    Insert test data

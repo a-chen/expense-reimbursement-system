@@ -52,6 +52,9 @@ public class UserDAO {
         List<User> users = new ArrayList<>();
         mapUsers(rs, users);
 
+        if (users == null) {
+            return null;
+        }
         return users.get(0);
     }
 

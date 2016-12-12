@@ -10,9 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-    <jsp:include page="jsp-components/bootstrap.jsp" />
 
+    <%--Bootstrap--%>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <script src="js/bootstrap.min.js"></script>
+
+    <%--Custom--%>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/login.css">
-    <script src="js/main.js.js"></script>
+    <script src="js/main.js"></script>
 </head>

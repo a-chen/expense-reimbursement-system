@@ -25,14 +25,16 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="46f8d71b-7ae3-46de-897b-98864b7570b3">
-        <schema name="ERS" object-types="cluster, column, constraint, dblink, dimension, function, index, materialized view, nested table, package, procedure, sequence, synonym, table, dataset trigger, database trigger, type, view" />
-        <schema name="PUBLIC" object-types="materialized view, synonym, table, view" />
+        <schema name="ERS" object-types="column, function, materialized view, package, package function, sequence, synonym, table, type, type function, view" />
+        <schema name="PUBLIC" object-types="function, materialized view, package, sequence, synonym, table, type, view" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="46f8d71b-7ae3-46de-897b-98864b7570b3">
-      <console name="ERS" type="STANDARD"><![CDATA[select * from ERS_USERS]]></console>
+      <console name="ERS" type="STANDARD"><![CDATA[SELECT reimb_status FROM ers_reimbursement_status;
+
+SELECT reimb_type FROM ers_reimbursement_type;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
@@ -447,7 +449,7 @@
         <sorting-element type="RESERVED_WORD" id="parameter" />
       </sorting>
       <format>
-        <enforce-code-style-case value="true" />
+        <enforce-code-style-case value="false" />
       </format>
     </code-completion-settings>
     <execution-engine-settings>

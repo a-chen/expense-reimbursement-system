@@ -1,6 +1,8 @@
 package com.revature.data;
 
 import com.revature.beans.Reimbursement;
+import com.revature.beans.Status;
+import com.revature.beans.Type;
 import com.revature.beans.User;
 
 import java.sql.Connection;
@@ -11,6 +13,55 @@ import java.util.List;
  * Created by achen on 12/2/2016.
  */
 public class DatabaseAccessImplementation implements DatabaseAccess {
+
+
+    @Override
+    public List<Type> getTypes() {
+        Connection conn = null;
+        List<Type> types = null;
+
+        try {
+            conn = ServiceLocator.getERSDatabase().getConnection();
+            conn.setAutoCommit(false); // enables transaction
+
+            TypeDAO typeDAO = new TypeDAO(conn);
+
+            types = typeDAO.getTypes();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return types;
+    }
+
+    @Override
+    public List<Status> getStatuses() {
+        Connection conn = null;
+        List<Status> statuses = null;
+
+        try {
+            conn = ServiceLocator.getERSDatabase().getConnection();
+            conn.setAutoCommit(false); // enables transaction
+
+            StatusDAO statusDAO = new StatusDAO(conn);
+
+            statuses = statusDAO.getStatuses();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return statuses;
+    }
 
     @Override
     public User getUserByUserName(String username) {
@@ -24,8 +75,6 @@ public class DatabaseAccessImplementation implements DatabaseAccess {
             UserDAO userDAO = new UserDAO(conn);
 
             user = userDAO.getUserByUserName(username);
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -94,4 +143,6 @@ public class DatabaseAccessImplementation implements DatabaseAccess {
     public void updateEmail(User user) {
 
     }
+
+
 }
