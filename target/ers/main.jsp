@@ -40,7 +40,7 @@
                     <select name="status">
                         <c:forEach var="status" items="${statuses}">
                             <c:choose>
-                                <%-- --%>
+                                <%-- automatically load from database --%>
                                 <c:when test="${reimb.status.status == status.status}">
                                     <option selected>${reimb.status.status}
                                 </c:when>

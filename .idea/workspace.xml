@@ -2,59 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90852482-8974-4dd5-832f-fac4468249a5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/revature/data/StatusDAO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/revature/data/TypeDAO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/revature/middle/ReimbursementService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/revature/middle/StatusService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/revature/middle/TypeService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap-theme.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/main.jsp" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/jsp-components/bootstrap.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/ers/jsp-components/bootstrap.jsp" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/revature/data/DatabaseAccess.class" afterPath="$PROJECT_DIR$/target/classes/com/revature/data/DatabaseAccess.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/revature/data/DatabaseAccessImplementation.class" afterPath="$PROJECT_DIR$/target/classes/com/revature/data/DatabaseAccessImplementation.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/revature/data/ReimbursementDAO.class" afterPath="$PROJECT_DIR$/target/classes/com/revature/data/ReimbursementDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/revature/data/UserDAO.class" afterPath="$PROJECT_DIR$/target/classes/com/revature/data/UserDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/revature/middle/BusinessDelegate.class" afterPath="$PROJECT_DIR$/target/classes/com/revature/middle/BusinessDelegate.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/revature/middle/UserService.class" afterPath="$PROJECT_DIR$/target/classes/com/revature/middle/UserService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/revature/web/FrontController.class" afterPath="$PROJECT_DIR$/target/classes/com/revature/web/FrontController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/revature/web/MainController.class" afterPath="$PROJECT_DIR$/target/classes/com/revature/web/MainController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/revature/web/RequestDispatcher.class" afterPath="$PROJECT_DIR$/target/classes/com/revature/web/RequestDispatcher.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ers/WEB-INF/classes/com/revature/data/DatabaseAccess.class" afterPath="$PROJECT_DIR$/target/ers/WEB-INF/classes/com/revature/data/DatabaseAccess.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ers/WEB-INF/classes/com/revature/data/DatabaseAccessImplementation.class" afterPath="$PROJECT_DIR$/target/ers/WEB-INF/classes/com/revature/data/DatabaseAccessImplementation.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ers/WEB-INF/classes/com/revature/data/ReimbursementDAO.class" afterPath="$PROJECT_DIR$/target/ers/WEB-INF/classes/com/revature/data/ReimbursementDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ers/WEB-INF/classes/com/revature/data/UserDAO.class" afterPath="$PROJECT_DIR$/target/ers/WEB-INF/classes/com/revature/data/UserDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ers/WEB-INF/classes/com/revature/middle/BusinessDelegate.class" afterPath="$PROJECT_DIR$/target/ers/WEB-INF/classes/com/revature/middle/BusinessDelegate.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ers/WEB-INF/classes/com/revature/middle/UserService.class" afterPath="$PROJECT_DIR$/target/ers/WEB-INF/classes/com/revature/middle/UserService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ers/WEB-INF/classes/com/revature/web/FrontController.class" afterPath="$PROJECT_DIR$/target/ers/WEB-INF/classes/com/revature/web/FrontController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ers/WEB-INF/classes/com/revature/web/MainController.class" afterPath="$PROJECT_DIR$/target/ers/WEB-INF/classes/com/revature/web/MainController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ers/WEB-INF/classes/com/revature/web/RequestDispatcher.class" afterPath="$PROJECT_DIR$/target/ers/WEB-INF/classes/com/revature/web/RequestDispatcher.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ERS.sql" afterPath="$PROJECT_DIR$/ERS.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/revature/data/DatabaseAccess.java" afterPath="$PROJECT_DIR$/src/main/java/com/revature/data/DatabaseAccess.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/revature/data/DatabaseAccessImplementation.java" afterPath="$PROJECT_DIR$/src/main/java/com/revature/data/DatabaseAccessImplementation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/revature/data/UserDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/revature/data/UserDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/revature/middle/BusinessDelegate.java" afterPath="$PROJECT_DIR$/src/main/java/com/revature/middle/BusinessDelegate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/revature/middle/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/com/revature/middle/UserService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/revature/web/FrontController.java" afterPath="$PROJECT_DIR$/src/main/java/com/revature/web/FrontController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/revature/web/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/com/revature/web/MainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/revature/web/RequestDispatcher.java" afterPath="$PROJECT_DIR$/src/main/java/com/revature/web/RequestDispatcher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/css/login.css" afterPath="$PROJECT_DIR$/src/main/webapp/css/login.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/css/main.css" afterPath="$PROJECT_DIR$/src/main/webapp/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/header.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/header.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/navbar.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/navbar.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ers/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/target/ers/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ers/css/login.css" afterPath="$PROJECT_DIR$/target/ers/css/login.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ers/css/main.css" afterPath="$PROJECT_DIR$/target/ers/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ers/header.jsp" afterPath="$PROJECT_DIR$/target/ers/header.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ers/index.jsp" afterPath="$PROJECT_DIR$/target/ers/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ers/login.jsp" afterPath="$PROJECT_DIR$/target/ers/login.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ers/navbar.jsp" afterPath="$PROJECT_DIR$/target/ers/navbar.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/main.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/main.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ers/main.jsp" afterPath="$PROJECT_DIR$/target/ers/main.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -151,8 +102,8 @@
       <file leaf-file-name="main.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/main.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="40" column="68" lean-forward="true" selection-start-line="40" selection-start-column="68" selection-end-line="40" selection-end-column="68" />
+            <state relative-caret-position="322">
+              <caret line="65" column="20" lean-forward="false" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -1113,12 +1064,12 @@
       <workItem from="1481132186346" duration="64242000" />
       <workItem from="1481549179747" duration="16000" />
       <workItem from="1481553842371" duration="4965000" />
-      <workItem from="1481568239354" duration="5818000" />
+      <workItem from="1481568239354" duration="7815000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121504000" />
+    <option name="totallyTimeSpent" value="123501000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1372,7 +1323,7 @@
         <state relative-caret-position="189">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1438,7 +1389,7 @@
         <state relative-caret-position="296">
           <caret line="13" column="3" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1540,8 +1491,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/main.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="40" column="68" lean-forward="true" selection-start-line="40" selection-start-column="68" selection-end-line="40" selection-end-column="68" />
+        <state relative-caret-position="322">
+          <caret line="65" column="20" lean-forward="false" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
           <folding />
         </state>
       </provider>
