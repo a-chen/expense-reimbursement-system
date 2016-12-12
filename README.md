@@ -1,2 +1,2 @@
 # reimbursement
-Expense reimbursement system created for Revature bootcamp
+Expense reimbursement system created for Revature bootcamp using JSP/Servlets and JDBC
