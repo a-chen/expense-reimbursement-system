@@ -27,7 +27,7 @@
         <c:forEach var="reimb" items="${reimbursements}">
             <tr>
                     <%--Edit onclick unlocks reimb_status and reimb_type--%>
-                <td class="edit_row"><a href="">Edit</a></td>
+                <td class="edit_row"><a>Edit</a></td>
                 <td class="reimb_id"><c:out value="${reimb.id}" /></td>
                 <td class="reimb_author_last_name"><c:out value="${reimb.author.lastName}" /></td>
                 <td class="reimb_author_first_name"><c:out value="${reimb.author.firstName}" /></td>
@@ -37,7 +37,7 @@
                 <td class="reimb_resolver_full_name"><c:out value="${reimb.resolver.firstName} ${reimb.resolver.lastName}" /></td>
                 <td class="reimb_description"><c:out value="${reimb.description}" /></td>
                 <td class="reimb_status">
-                    <select name="status">
+                    <select name="status" disabled>
                         <c:forEach var="status" items="${statuses}">
                             <c:choose>
                                 <%-- automatically load from database --%>
@@ -55,7 +55,7 @@
                     </select>
                 </td>
                 <td class="reimb_type">
-                    <select name="type">
+                    <select name="type" disabled>
                         <c:forEach var="type" items="${types}">
                             <c:choose>
                                 <c:when test="${reimb.type.type == type.type}">

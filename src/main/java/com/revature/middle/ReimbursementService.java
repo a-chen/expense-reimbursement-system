@@ -13,4 +13,8 @@ class ReimbursementService {
     public List<Reimbursement> viewAllReimbursements() {
         return new DatabaseAccessImplementation().getAllReimbursements();
     }
+
+    public List<Reimbursement> viewReimbursementsById(int id) {
+        return new DatabaseAccessImplementation().getReimbursementsById(id);
+    }
 }

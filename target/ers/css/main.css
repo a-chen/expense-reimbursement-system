@@ -2,3 +2,6 @@ label {
     margin-bottom: 0;
 }
 
+select[disabled] {
+    background-color: #434a52;
+}

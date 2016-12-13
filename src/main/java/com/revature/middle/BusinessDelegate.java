@@ -29,4 +29,8 @@ public class BusinessDelegate {
     public List<Status> getStatus() {
         return new StatusService().getStatuses();
     }
+
+    public List<Reimbursement> viewReimbursementsById(int id) {
+        return new ReimbursementService().viewReimbursementsById(id);
+    }
 }

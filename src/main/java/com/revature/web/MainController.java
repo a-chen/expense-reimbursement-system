@@ -29,16 +29,14 @@ public class MainController {
                 request.getParameter("username"),
                 request.getParameter("password"));
 
-
-        //adds session-wide values
-            HttpSession session = request.getSession();
+        //stores user data in cookie
+        if (user != null) {
+            //adds session-wide values
+            HttpSession session = request.getSession(true);
 
             //adds User object to Session scope
-            session.setAttribute("currentUser", user);
-            //set login status
-            Boolean loggedIn = true;
-            session.setAttribute("loggedIn", loggedIn);
-
+            session.setAttribute("user", user);
+            //gets list of types and statuses
             List<Type> types = businessDelegate.getType();
             List<Status> statuses = businessDelegate.getStatus();
 
@@ -46,59 +44,72 @@ public class MainController {
             session.setAttribute("types", types);
             session.setAttribute("statuses", statuses);
 
-
-        //stores user data in cookie
-        if (user != null) {
-            Cookie cookie = new Cookie("username",
-                    request.getParameter("username"));
-            cookie.setMaxAge(999);
+            Cookie cookie = new Cookie("username", user.getUsername());
+            cookie.setMaxAge(9999999);
             response.addCookie(cookie);
 
-            /*
-            @todo need to move this to right location
-            puts Reimbursement list to session scope if user is Admin or HR
-             */
-            if(user.getRole().getRole().equals("HR") || user.getRole().getRole().equals("Admin")){
-                List<Reimbursement> reimbursements = businessDelegate.viewAllReimbursements();
-                session.setAttribute("reimbursements", reimbursements);
-            }
         }
 
         // GOTO next page
-        request.getRequestDispatcher("index.jsp")
-                .forward(request, response);
+//        request.getRequestDispatcher("/").forward(request, response);
+        doMain(request, response);
+        checkLogin(request, response);
     }
 
     /**
-     * Redirects user to main page if User object is still in session(logged in)
-     * else redirect to login
-     *
-     * Also returns boolean
+     * Checks if user is logged in
      *
      * @param request
      * @param response
      * @return Boolean
      */
-    public void checkLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public Boolean checkLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        return (session != null && session.getAttribute("user") != null);
+    }
 
-        Boolean loggedIn = (Boolean) request.getSession().getAttribute("loggedIn");
-        if (loggedIn != null && loggedIn == true) {
-            request.getRequestDispatcher("main.jsp").forward(request, response);
-
+    public void doMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //if not logged in, redirect to login page
+        if (!checkLogin(request, response)) {
+            response.sendRedirect("login.jsp");
         } else {
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            populateReimbursements(request, response);
+            request.getRequestDispatcher("main.jsp").forward(request, response);
         }
+
+
+
     }
 
     public void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*Boolean loggedIn = false;
-        request.getSession().setAttribute("loggedIn", loggedIn);*/
-        HttpSession session = request.getSession();
-        if (session != null) {
-            session.invalidate();
-            response.sendRedirect("login.jsp");
-        }
 
-//        request.getRequestDispatcher("login.jsp").forward(request, response);
+        HttpSession session = request.getSession(false);
+        if(session != null)
+            session.invalidate();
+        System.out.println(request.getSession(false));
+        response.sendRedirect("login.jsp");
     }
+
+
+    /**
+     * Puts Reimbursement list to request scope if user is Admin or HR
+     * Otherwise, display a user's own reimbursements
+     * @param request
+     * @param response
+     */
+    void populateReimbursements(HttpServletRequest request, HttpServletResponse response) {
+        User user = (User) request.getSession().getAttribute("user");
+        BusinessDelegate businessDelegate = new BusinessDelegate();
+        List<Reimbursement> reimbursements;
+
+        if (user.getRole().getRole().equals("HR") || user.getRole().getRole().equals("Admin")) {
+            reimbursements = businessDelegate.viewAllReimbursements();
+        } else {
+            reimbursements = businessDelegate.viewReimbursementsById(user.getId());
+        }
+        request.setAttribute("reimbursements", reimbursements);
+    }
+
+
+
 }

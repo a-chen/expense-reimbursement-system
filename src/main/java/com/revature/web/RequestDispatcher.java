@@ -29,8 +29,12 @@ public class RequestDispatcher extends HttpServlet {
                 new FrontController().logout(request, response);
                 break;
             }
+            case "/ers/main": {
+                new FrontController().doMain(request, response);
+                break;
+            }
             case "/ers/index.jsp": {
-                new FrontController().checkLogin(request, response);
+                new FrontController().doMain(request, response);
                 break;
             }
 

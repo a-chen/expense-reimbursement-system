@@ -114,6 +114,31 @@ public class DatabaseAccessImplementation implements DatabaseAccess {
         return reimbursements;
     }
 
+    public List<Reimbursement> getReimbursementsById(int id) {
+        Connection conn = null;
+        List<Reimbursement> reimbursements = null;
+
+        try {
+            conn = ServiceLocator.getERSDatabase().getConnection();
+            conn.setAutoCommit(false); // enables transaction
+
+            ReimbursementDAO reimbursementDAO = new ReimbursementDAO(conn);
+
+            reimbursements = reimbursementDAO.viewAllReimbursements();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return reimbursements;
+    }
+
     @Override
     public void changeReimbursementStatus(Reimbursement reimbursement) {
 
@@ -143,6 +168,7 @@ public class DatabaseAccessImplementation implements DatabaseAccess {
     public void updateEmail(User user) {
 
     }
+
 
 
 }
