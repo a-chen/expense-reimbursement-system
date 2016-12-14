@@ -94,7 +94,6 @@ public class MainController {
         response.sendRedirect("login.jsp");
     }
 
-
     /**
      * Puts Reimbursement list to request scope if user is Admin or HR
      * Otherwise, display a user's own reimbursements
@@ -103,10 +102,8 @@ public class MainController {
      */
     void populateReimbursements(HttpServletRequest request, HttpServletResponse response) {
         User user = (User) request.getSession().getAttribute("user");
-        List<Reimbursement> reimbursements = new BusinessDelegate().viewReimbs(user);
+        List<Reimbursement> reimbursements = new BusinessDelegate().viewReimbursements(user);
         request.setAttribute("reimbursements", reimbursements);
     }
-
-
 
 }

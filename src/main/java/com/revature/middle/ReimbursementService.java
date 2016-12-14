@@ -21,7 +21,7 @@ class ReimbursementService {
         return reimbursements;
     }
 
-    public List<Reimbursement> viewReimbs(User user) {
+    public List<Reimbursement> viewReimbursements(User user) {
         List<Reimbursement> reimbursements;
         DatabaseAccessImplementation databaseAccess = new DatabaseAccessImplementation();
         System.out.println(user.getRole().getRole() + " " + user.getId());

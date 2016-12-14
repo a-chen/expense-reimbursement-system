@@ -2,6 +2,7 @@ package com.revature.data;
 
 import com.revature.beans.Role;
 import com.revature.beans.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -86,6 +87,23 @@ public class UserDAO {
 
     public void insert(User user) {
 
+    }
+
+    void hashExistingPasswords(User user)throws SQLException {
+
+        String unhashedPass = user.getPassword();
+        String hashedPass = BCrypt.hashpw(unhashedPass, BCrypt.gensalt());
+
+        String sql = "UPDATE ers_user " +
+                     "SET ers_password = ? " +
+                     "WHERE ers_user_id = ?";
+
+        PreparedStatement stmt = conn.prepareStatement(sql);
+
+        stmt.setString(1, hashedPass);
+        stmt.setInt(2, user.getId());
+
+        stmt.executeQuery();
     }
 
 }

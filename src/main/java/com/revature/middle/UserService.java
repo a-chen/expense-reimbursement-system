@@ -16,13 +16,10 @@ class UserService {
     public User authenticate(String username, String password) throws AuthenticationException {
         DatabaseAccessImplementation databaseAccessObject = new DatabaseAccessImplementation();
         User user = databaseAccessObject.getUserByUserName(username);
-        if (user == null) {
-            throw new AuthenticationException();
-        }
-        if (user.getPassword().equals(password)) {
+
+        if (user != null && user.getPassword().equals(password)) {
             return user;
         } else
             throw new AuthenticationException();
-
     }
 }

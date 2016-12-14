@@ -4,10 +4,8 @@ import com.revature.beans.Reimbursement;
 import com.revature.beans.Status;
 import com.revature.beans.Type;
 import com.revature.beans.User;
-import com.revature.data.DatabaseAccessImplementation;
 
 import javax.naming.AuthenticationException;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -27,9 +25,8 @@ public class BusinessDelegate {
         return new StatusService().getStatuses();
     }
 
-    public List<Reimbursement> viewReimbs(User user) {
-        return new ReimbursementService().viewReimbs(user);
+    public List<Reimbursement> viewReimbursements(User user) {
+        return new ReimbursementService().viewReimbursements(user);
     }
-
 
 }

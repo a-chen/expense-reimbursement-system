@@ -31,5 +31,6 @@
     <orderEntry type="library" name="javax.servlet:jstl:1.2" level="application" />
     <orderEntry type="library" name="jquery.dataTables" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="org.mindrot:jbcrypt:0.3m" level="project" />
   </component>
 </module>
