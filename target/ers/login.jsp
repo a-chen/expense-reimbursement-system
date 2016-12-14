@@ -5,7 +5,7 @@
 <body class="align">
     <div class="grid">
         <h1 id="login_header">gimme my money</h1>
-        <form action="login.do" method="POST" class="form login">
+        <form action="login.do" method="post" class="form login">
 
             <div class="form__field">
                 <label for="login__username"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use></svg><span class="hidden">Username </span></label>

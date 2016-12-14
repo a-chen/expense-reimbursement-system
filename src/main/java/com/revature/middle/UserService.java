@@ -14,8 +14,8 @@ import java.util.List;
  */
 class UserService {
     public User authenticate(String username, String password) throws AuthenticationException {
-        DatabaseAccessImplementation facade = new DatabaseAccessImplementation();
-        User user = facade.getUserByUserName(username);
+        DatabaseAccessImplementation databaseAccessObject = new DatabaseAccessImplementation();
+        User user = databaseAccessObject.getUserByUserName(username);
         if (user == null) {
             throw new AuthenticationException();
         }

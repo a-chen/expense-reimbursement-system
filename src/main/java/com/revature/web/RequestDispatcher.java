@@ -37,6 +37,10 @@ public class RequestDispatcher extends HttpServlet {
                 new FrontController().doMain(request, response);
                 break;
             }
+            case "/ers/reimbursementTable.do": {
+                new FrontController().updateReimbursements(request, response);
+                break;
+            }
 
             default: {
                 response.setStatus(404);

@@ -29,5 +29,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:3.8.1" level="project" />
     <orderEntry type="library" name="WebLogic 12.2.1.2.0" level="application_server_libraries" />
     <orderEntry type="library" name="javax.servlet:jstl:1.2" level="application" />
+    <orderEntry type="library" name="jquery.dataTables" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
 </module>

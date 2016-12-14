@@ -76,7 +76,11 @@ public class MainController {
             populateReimbursements(request, response);
             request.getRequestDispatcher("main.jsp").forward(request, response);
         }
+    }
 
+    //@todo
+    public void updateReimbursements(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("reimbursementTable.do clicked");
 
 
     }
@@ -99,14 +103,7 @@ public class MainController {
      */
     void populateReimbursements(HttpServletRequest request, HttpServletResponse response) {
         User user = (User) request.getSession().getAttribute("user");
-        BusinessDelegate businessDelegate = new BusinessDelegate();
-        List<Reimbursement> reimbursements;
-
-        if (user.getRole().getRole().equals("HR") || user.getRole().getRole().equals("Admin")) {
-            reimbursements = businessDelegate.viewAllReimbursements();
-        } else {
-            reimbursements = businessDelegate.viewReimbursementsById(user.getId());
-        }
+        List<Reimbursement> reimbursements = new BusinessDelegate().viewReimbs(user);
         request.setAttribute("reimbursements", reimbursements);
     }
 

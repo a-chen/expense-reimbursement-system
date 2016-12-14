@@ -27,4 +27,8 @@ public class FrontController {
     public void doMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         new MainController().doMain(request, response);
     }
+
+    public void updateReimbursements(HttpServletRequest request, HttpServletResponse response) {
+        new MainController().updateReimbursements(request, response);
+    }
 }

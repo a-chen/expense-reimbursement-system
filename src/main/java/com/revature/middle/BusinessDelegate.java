@@ -22,15 +22,14 @@ public class BusinessDelegate {
     public List<Type> getType() {
         return new TypeService().getTypes();
     }
-    public List<Reimbursement> viewAllReimbursements() {
-        return new ReimbursementService().viewAllReimbursements();
-    }
 
     public List<Status> getStatus() {
         return new StatusService().getStatuses();
     }
 
-    public List<Reimbursement> viewReimbursementsById(int id) {
-        return new ReimbursementService().viewReimbursementsById(id);
+    public List<Reimbursement> viewReimbs(User user) {
+        return new ReimbursementService().viewReimbs(user);
     }
+
+
 }

@@ -18,6 +18,10 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
     <script src="js/bootstrap.min.js"></script>
 
+    <!-- Data Table -->
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+    <script src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
     <!-- Custom -->
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/login.css">

@@ -124,7 +124,7 @@ public class DatabaseAccessImplementation implements DatabaseAccess {
 
             ReimbursementDAO reimbursementDAO = new ReimbursementDAO(conn);
 
-            reimbursements = reimbursementDAO.viewAllReimbursements();
+            reimbursements = reimbursementDAO.viewReimbursementsById(id);
 
 
         } catch (SQLException e) {

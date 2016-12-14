@@ -84,7 +84,7 @@ public class ReimbursementDAO {
             //reimb and author data
             int id = rs.getInt("reimb_id");
             double amount = rs.getDouble("reimb_amount");
-            Timestamp submitted = rs.getTimestamp("reimb_resolved");
+            Timestamp submitted = rs.getTimestamp("reimb_submitted");
             Timestamp resolved = rs.getTimestamp("reimb_resolved");
             String description = rs.getString("reimb_description");
             int authorId = rs.getInt("reimb_author");
@@ -141,9 +141,7 @@ public class ReimbursementDAO {
 
             //adds Reimbursement object to List result
             result.add(reimbursement);
-
         }
-
         return result;
     }
 
@@ -257,6 +255,7 @@ public class ReimbursementDAO {
             result.add(reimbursement);
         }
 
+        System.out.println(result);
         return result;
 
     }
