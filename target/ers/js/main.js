@@ -9,16 +9,48 @@ $( document ).ready(function() {
             .prop('disabled', function(_, prop){ return !prop});
     });
 
-    //@todo
-    $("#reimb_table_submit").click(function(){
-        $.post("reimbursementTable.do",
-            {
-                name: "Donald Duck",
-                city: "Duckburg"
-            },
-            function(data, status){
-                console.log("Data: " + data + "\nStatus: " + status);
-            });
+
+    /**
+     * Upon change of select box for Reimbursement status or type,
+     * sends AJAX post request to change to alter database data
+     */
+    $('.reimb_status').change(function(){
+
+        reimb_id = $(this).closest('tr').find('.reimb_id').text();
+        reimb_status = $(this).closest('tr').find("select[name='reimb_status']").val();
+
+        console.log('Reimbursement ' + reimb_id + ':Status changed to ' + reimb_status);
+
+        var statusObj = {status:reimb_status};
+        var reimbursementObj = JSON.stringify({id:reimb_id, status:statusObj});
+        $.ajax({
+            method:"POST",
+            url:"updateStatus.do",
+            data: reimbursementObj,
+            success: function (data) {
+                
+            }
+        });
+    });
+
+    /**
+     * Upon change of select box for Reimbursement status or type,
+     * sends AJAX post request to change to alter database data
+     */
+    $('.reimb_type').change(function(){
+
+        reimb_id = $(this).closest('tr').find('.reimb_id').text();
+        reimb_type = $(this).closest('tr').find("select[name='reimb_type']").val();
+
+        console.log('Reimbursement ' + reimb_id + ':Type changed to ' + reimb_type);
+
+        var typeObj = {type:reimb_type};
+        var reimbursementObj = JSON.stringify({id:reimb_id, type:typeObj});
+        $.ajax({
+            method:"POST",
+            url:"updateType.do",
+            data: reimbursementObj
+        });
     });
 });
 

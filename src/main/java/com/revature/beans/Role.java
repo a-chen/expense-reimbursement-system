@@ -1,12 +1,16 @@
 package com.revature.beans;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by achen on 12/5/2016.
  */
 public class Role {
 
-    int id;
-    String role;
+    @JsonProperty
+    private int id;
+    @JsonProperty
+    private String role;
 
     public Role(int id, String role) {
         super();

@@ -37,8 +37,12 @@ public class RequestDispatcher extends HttpServlet {
                 new FrontController().doMain(request, response);
                 break;
             }
-            case "/ers/reimbursementTable.do": {
-                new FrontController().updateReimbursements(request, response);
+            case "/ers/updateStatus.do": {
+                new FrontController().updateStatus(request, response);
+                break;
+            }
+            case "/ers/updateType.do": {
+                new FrontController().updateType(request, response);
                 break;
             }
 

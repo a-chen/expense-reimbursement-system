@@ -14,11 +14,11 @@ import java.util.List;
 /**
  * Created by achen on 12/2/2016.
  */
-public class UserDAO {
+class UserDAO {
 
     private Connection conn;
 
-    public UserDAO(Connection conn) {
+    UserDAO(Connection conn) {
         super();
         this.conn = conn;
     }
@@ -30,7 +30,7 @@ public class UserDAO {
      * @return
      * @throws SQLException
      */
-    public User getUserByUserName(String username) throws SQLException {
+    User getUserByUserName(String username) throws SQLException {
 
         String sql = "SELECT ers_user_id, " +
                         "ers_username, " +
@@ -47,6 +47,33 @@ public class UserDAO {
 
         stmt.setString(1, username);
         stmt.setString(2, username);
+
+        ResultSet rs = stmt.executeQuery();
+
+        List<User> users = new ArrayList<>();
+        mapUsers(rs, users);
+
+        if (users == null) {
+            return null;
+        }
+        return users.get(0);
+    }
+
+    User getUserById(int id) throws SQLException {
+
+        String sql = "SELECT ers_user_id, " +
+                "ers_username, " +
+                "ers_password, " +
+                "user_first_name, " +
+                "user_last_name, " +
+                "user_email, " +
+                "user_role_id " +
+                "FROM ers_user " +
+                "WHERE ers_user_id = ?";
+
+        PreparedStatement stmt = conn.prepareStatement(sql);
+
+        stmt.setInt(1, id);
 
         ResultSet rs = stmt.executeQuery();
 
@@ -85,11 +112,11 @@ public class UserDAO {
         }
     }
 
-    public void insert(User user) {
+    void insert(User user) {
 
     }
 
-    void hashExistingPasswords(User user)throws SQLException {
+    void hashExistingPassword(User user)throws SQLException {
 
         String unhashedPass = user.getPassword();
         String hashedPass = BCrypt.hashpw(unhashedPass, BCrypt.gensalt());

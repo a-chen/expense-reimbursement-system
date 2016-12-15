@@ -10,11 +10,11 @@ import java.sql.SQLException;
 /**
  * Created by achen on 12/7/2016.
  */
-public class RoleDAO {
+class RoleDAO {
 
     private Connection conn;
 
-    public RoleDAO(Connection conn) {
+    RoleDAO(Connection conn) {
         super();
         this.conn = conn;
     }
@@ -26,7 +26,7 @@ public class RoleDAO {
      * @return Role object
      * @throws SQLException
      */
-    public Role getRoleById(int id) throws SQLException {
+    Role getRoleById(int id) throws SQLException {
 
         String sql = "SELECT ers_user_role_id, user_role " +
                 "FROM ers_user_roles " +

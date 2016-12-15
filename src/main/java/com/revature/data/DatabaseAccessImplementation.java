@@ -64,6 +64,46 @@ public class DatabaseAccessImplementation implements DatabaseAccess {
     }
 
     @Override
+    public void updateStatus(Reimbursement reimbursement) {
+        Connection conn = null;
+
+        try {
+            conn = ServiceLocator.getERSDatabase().getConnection();
+            conn.setAutoCommit(false); // enables transaction
+
+            new StatusDAO(conn).updateStatus(reimbursement);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void updateType(Reimbursement reimbursement) {
+        Connection conn = null;
+
+        try {
+            conn = ServiceLocator.getERSDatabase().getConnection();
+            conn.setAutoCommit(false); // enables transaction
+
+            new TypeDAO(conn).updateType(reimbursement);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
     public User getUserByUserName(String username) {
         Connection conn = null;
         User user = null;
@@ -114,7 +154,7 @@ public class DatabaseAccessImplementation implements DatabaseAccess {
         return reimbursements;
     }
 
-    public List<Reimbursement> getReimbursementsById(int id) {
+    public List<Reimbursement> getReimbursementsByUserId(int id) {
         Connection conn = null;
         List<Reimbursement> reimbursements = null;
 
@@ -124,7 +164,7 @@ public class DatabaseAccessImplementation implements DatabaseAccess {
 
             ReimbursementDAO reimbursementDAO = new ReimbursementDAO(conn);
 
-            reimbursements = reimbursementDAO.viewReimbursementsById(id);
+            reimbursements = reimbursementDAO.viewReimbursementsByUserId(id);
 
 
         } catch (SQLException e) {
@@ -168,7 +208,6 @@ public class DatabaseAccessImplementation implements DatabaseAccess {
     public void updateEmail(User user) {
 
     }
-
 
 
 }

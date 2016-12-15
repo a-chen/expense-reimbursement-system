@@ -1,12 +1,16 @@
 package com.revature.beans;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by achen on 12/5/2016.
  */
 public class Type {
 
-    int id;
-    String type;
+    @JsonProperty
+    private int id;
+    @JsonProperty
+    private String type;
 
     public Type(int id, String type) {
         super();

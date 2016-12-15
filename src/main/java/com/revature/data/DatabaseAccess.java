@@ -13,27 +13,31 @@ import java.util.List;
  */
 public interface DatabaseAccess {
 
-    public List<Type> getTypes();
+    List<Type> getTypes();
 
-    public User getUserByUserName(String username) throws SQLException;
+    User getUserByUserName(String username) throws SQLException;
 
     /**
      * For use by Finance Managers to see all reimbursements
      * @return
      */
-    public List<Reimbursement> getAllReimbursements() throws SQLException;
+    List<Reimbursement> getAllReimbursements() throws SQLException;
 
-    public void changeReimbursementStatus(Reimbursement reimbursement);
+    void changeReimbursementStatus(Reimbursement reimbursement);
 
-    public void addReimbursement(Reimbursement reimbursement);
+    void addReimbursement(Reimbursement reimbursement);
 
-    public void updateReimbursementDescription(Reimbursement reimbursement);
+    void updateReimbursementDescription(Reimbursement reimbursement);
 
-    public void updateUsername(User user);
+    void updateUsername(User user);
 
-    public void updatePassword(User user);
+    void updatePassword(User user);
 
-    public void updateEmail(User user);
+    void updateEmail(User user);
 
     List<Status> getStatuses();
+
+    void updateStatus(Reimbursement reimbursement);
+
+    void updateType(Reimbursement reimbursement);
 }

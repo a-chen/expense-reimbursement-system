@@ -4,20 +4,34 @@ import com.revature.beans.Reimbursement;
 import com.revature.beans.Status;
 import com.revature.beans.Type;
 import com.revature.beans.User;
+import com.revature.web.parser.JSONConverter;
 import com.revature.middle.BusinessDelegate;
 
 import javax.naming.AuthenticationException;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 /**
  * Created by achen on 12/8/2016.
  */
-public class MainController {
+class MainController {
 
-    public void login(HttpServletRequest request, HttpServletResponse response) throws
+    /**
+     * Matches the username or email with password
+     * On match, will load some preliminary data
+     *  before passing to main page handler
+     * @param request
+     * @param response
+     * @throws AuthenticationException
+     * @throws ServletException
+     * @throws IOException
+     */
+    void login(HttpServletRequest request, HttpServletResponse response) throws
             AuthenticationException,
             ServletException,
             IOException {
@@ -53,7 +67,14 @@ public class MainController {
         // GOTO next page
 //        request.getRequestDispatcher("/").forward(request, response);
         doMain(request, response);
-        checkLogin(request, response);
+    }
+
+    void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        HttpSession session = request.getSession(false);
+        if(session != null)
+            session.invalidate();
+        response.sendRedirect("login.jsp");
     }
 
     /**
@@ -63,12 +84,22 @@ public class MainController {
      * @param response
      * @return Boolean
      */
-    public Boolean checkLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    Boolean checkLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         return (session != null && session.getAttribute("user") != null);
     }
 
-    public void doMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    /**
+     * Checks if user is logged in, if not, redirect to login page
+     * If user is logged in, then it will populate the page depending on the user
+     * Admin and HR personnel will see all reimbursements
+     * Other user roles will just see their own
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    void doMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //if not logged in, redirect to login page
         if (!checkLogin(request, response)) {
             response.sendRedirect("login.jsp");
@@ -77,23 +108,7 @@ public class MainController {
             request.getRequestDispatcher("main.jsp").forward(request, response);
         }
     }
-
-    //@todo
-    public void updateReimbursements(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("reimbursementTable.do clicked");
-
-
-    }
-
-    public void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        HttpSession session = request.getSession(false);
-        if(session != null)
-            session.invalidate();
-        System.out.println(request.getSession(false));
-        response.sendRedirect("login.jsp");
-    }
-
+    
     /**
      * Puts Reimbursement list to request scope if user is Admin or HR
      * Otherwise, display a user's own reimbursements
@@ -106,4 +121,39 @@ public class MainController {
         request.setAttribute("reimbursements", reimbursements);
     }
 
+    /**
+     * Maps data from http request body into a Reimbursement object
+     * and stores in database, in this case, only status
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    void updateStatus(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //extract Status from request body
+        InputStream requestBody = request.getInputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(requestBody));
+
+        Reimbursement reimbursement = new JSONConverter().getReimbursement(reader.readLine());
+        User user = (User) request.getSession().getAttribute("user");
+        reimbursement.setResolver(user);
+        System.out.println(reimbursement);
+        new BusinessDelegate().updateStatus(reimbursement);
+    }
+
+    /**
+     * Maps data from http request body into a Reimbursement object
+     * and stores in database, in this case, only type
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    public void updateType(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //extract Status from request body
+        InputStream requestBody = request.getInputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(requestBody));
+
+        Reimbursement reimbursement = new JSONConverter().getReimbursement(reader.readLine());
+        System.out.println(reimbursement);
+        new BusinessDelegate().updateType(reimbursement);
+    }
 }

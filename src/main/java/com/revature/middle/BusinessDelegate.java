@@ -29,4 +29,11 @@ public class BusinessDelegate {
         return new ReimbursementService().viewReimbursements(user);
     }
 
+    public void updateStatus(Reimbursement reimbursement) {
+        new ReimbursementService().updateStatus(reimbursement);
+    }
+
+    public void updateType(Reimbursement reimbursement) {
+        new ReimbursementService().updateType(reimbursement);
+    }
 }

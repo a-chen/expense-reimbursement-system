@@ -1,6 +1,7 @@
 package com.revature.data;
 
 
+import com.revature.beans.Reimbursement;
 import com.revature.beans.Status;
 import com.revature.beans.User;
 
@@ -21,12 +22,9 @@ public class ExpenseReimbursementSystem {
         try {
             conn = ServiceLocator.getERSDatabase().getConnection();
 
-            UserDAO userDAO = new UserDAO(conn);
-            User user = userDAO.getUserByUserName("jmoreno0");
-            System.out.println("Fetched: " + user);
+            Reimbursement reimbursement = null;
 
-            userDAO.hashExistingPasswords(user);
-            System.out.println("Hashed password is: " + user.getPassword());
+            new StatusDAO(conn).updateStatus(reimbursement);
 
         } catch (SQLException e) {
             e.printStackTrace();

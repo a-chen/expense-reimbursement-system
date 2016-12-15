@@ -1,16 +1,25 @@
 package com.revature.beans;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by achen on 12/2/2016.
  */
 public class User {
 
+    @JsonProperty
     private int id;
+    @JsonProperty
     private String username;
+    @JsonProperty
     private String password;
+    @JsonProperty
     private String firstName;
+    @JsonProperty
     private String lastName;
+    @JsonProperty
     private String email;
+    @JsonProperty
     private Role role;
 
     public User(int id,

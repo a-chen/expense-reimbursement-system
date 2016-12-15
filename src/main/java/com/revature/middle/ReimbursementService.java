@@ -11,25 +11,33 @@ import java.util.List;
  */
 class ReimbursementService {
 
-    public List<Reimbursement> viewAllReimbursements() {
+    List<Reimbursement> viewAllReimbursements() {
         return new DatabaseAccessImplementation().getAllReimbursements();
     }
 
-    public List<Reimbursement> viewReimbursementsById(int id) {
-        List<Reimbursement> reimbursements = new DatabaseAccessImplementation().getReimbursementsById(id);
+    List<Reimbursement> viewReimbursementsById(int id) {
+        List<Reimbursement> reimbursements = new DatabaseAccessImplementation().getReimbursementsByUserId(id);
 
         return reimbursements;
     }
 
-    public List<Reimbursement> viewReimbursements(User user) {
+    List<Reimbursement> viewReimbursements(User user) {
         List<Reimbursement> reimbursements;
         DatabaseAccessImplementation databaseAccess = new DatabaseAccessImplementation();
-        System.out.println(user.getRole().getRole() + " " + user.getId());
         if (user.getRole().getRole().equals("HR") || user.getRole().getRole().equals("Admin")) {
             reimbursements = databaseAccess.getAllReimbursements();
         } else {
-            reimbursements = databaseAccess.getReimbursementsById(user.getId());
+            reimbursements = databaseAccess.getReimbursementsByUserId(user.getId());
         }
         return reimbursements;
+    }
+
+    void updateStatus(Reimbursement reimbursement) {
+        new DatabaseAccessImplementation().updateStatus(reimbursement);
+
+    }
+
+    public void updateType(Reimbursement reimbursement) {
+        new DatabaseAccessImplementation().updateType(reimbursement);
     }
 }

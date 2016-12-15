@@ -1,23 +1,21 @@
 package com.revature.middle;
 
-import com.revature.beans.Reimbursement;
 import com.revature.beans.User;
 import com.revature.data.DatabaseAccessImplementation;
+import org.mindrot.jbcrypt.BCrypt;
+
 
 import javax.naming.AuthenticationException;
-import java.sql.SQLException;
-import java.util.List;
 
 /**
  * Performs authentication for users
  * Created by achen on 12/7/2016.
  */
 class UserService {
-    public User authenticate(String username, String password) throws AuthenticationException {
+    User authenticate(String username, String password) throws AuthenticationException {
         DatabaseAccessImplementation databaseAccessObject = new DatabaseAccessImplementation();
         User user = databaseAccessObject.getUserByUserName(username);
-
-        if (user != null && user.getPassword().equals(password)) {
+        if (user != null && BCrypt.checkpw(password, user.getPassword())) {
             return user;
         } else
             throw new AuthenticationException();

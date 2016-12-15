@@ -28,7 +28,11 @@ public class FrontController {
         new MainController().doMain(request, response);
     }
 
-    public void updateReimbursements(HttpServletRequest request, HttpServletResponse response) {
-        new MainController().updateReimbursements(request, response);
+    public void updateStatus(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        new MainController().updateStatus(request, response);
+    }
+
+    public void updateType(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        new MainController().updateType(request, response);
     }
 }

@@ -1,22 +1,34 @@
 package com.revature.beans;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.sql.Timestamp;
 
 /**
  * Created by achen on 12/2/2016.
  */
 public class Reimbursement {
+    @JsonProperty
     private int id;
+    @JsonProperty
     private double amount;
+    @JsonProperty
     private Timestamp submitted; //Timestamp(SYSTEM.currentMillitime)
+    @JsonProperty
     private Timestamp resolved;
+    @JsonProperty
     private String description;
     //takes in pictures, implement in the future
+    @JsonProperty
     private Receipt receipt;
     //reference user objects instead of fields
+    @JsonProperty
     private User author;
+    @JsonProperty
     private User resolver;
+    @JsonProperty
     private Status status;
+    @JsonProperty
     private Type type;
 
     /**

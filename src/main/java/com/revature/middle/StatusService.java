@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by achen on 12/12/2016.
  */
-public class StatusService {
+class StatusService {
 
     List<Status> getStatuses() {
         return new DatabaseAccessImplementation().getStatuses();

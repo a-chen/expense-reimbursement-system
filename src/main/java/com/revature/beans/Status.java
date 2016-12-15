@@ -1,12 +1,16 @@
 package com.revature.beans;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by achen on 12/5/2016.
  */
 public class Status {
 
-    int id;
-    String status;
+    @JsonProperty
+    private int id;
+    @JsonProperty
+    private String status;
 
     public Status(int id, String status) {
         super();
