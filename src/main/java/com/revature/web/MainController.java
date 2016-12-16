@@ -66,7 +66,7 @@ class MainController {
 
         // GOTO next page
 //        request.getRequestDispatcher("/").forward(request, response);
-        doMain(request, response);
+        response.sendRedirect("main");
     }
 
     void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -74,7 +74,7 @@ class MainController {
         HttpSession session = request.getSession(false);
         if(session != null)
             session.invalidate();
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("login");
     }
 
     /**
@@ -102,13 +102,13 @@ class MainController {
     void doMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //if not logged in, redirect to login page
         if (!checkLogin(request, response)) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("login");
         } else {
             populateReimbursements(request, response);
             request.getRequestDispatcher("main.jsp").forward(request, response);
         }
     }
-    
+
     /**
      * Puts Reimbursement list to request scope if user is Admin or HR
      * Otherwise, display a user's own reimbursements
@@ -124,6 +124,8 @@ class MainController {
     /**
      * Maps data from http request body into a Reimbursement object
      * and stores in database, in this case, only status
+     *
+     * Also adds a
      * @param request
      * @param response
      * @throws IOException
@@ -136,8 +138,16 @@ class MainController {
         Reimbursement reimbursement = new JSONConverter().getReimbursement(reader.readLine());
         User user = (User) request.getSession().getAttribute("user");
         reimbursement.setResolver(user);
-        System.out.println(reimbursement);
-        new BusinessDelegate().updateStatus(reimbursement);
+        BusinessDelegate businessDelegate = new BusinessDelegate();
+        businessDelegate.updateStatus(reimbursement);
+
+        //Converts Reimbursement object to JSON and passes it with request
+        Reimbursement fetchedReimbursement = businessDelegate.viewReimbursementById(reimbursement.getId());
+
+        String json = new JSONConverter().getJSON(fetchedReimbursement);
+        response.setContentType("application/json");
+        response.getWriter().print(json);
+
     }
 
     /**
@@ -153,7 +163,6 @@ class MainController {
         BufferedReader reader = new BufferedReader(new InputStreamReader(requestBody));
 
         Reimbursement reimbursement = new JSONConverter().getReimbursement(reader.readLine());
-        System.out.println(reimbursement);
         new BusinessDelegate().updateType(reimbursement);
     }
 }

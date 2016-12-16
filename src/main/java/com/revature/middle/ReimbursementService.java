@@ -31,6 +31,9 @@ class ReimbursementService {
         }
         return reimbursements;
     }
+    public Reimbursement viewReimbursementById(int reimbursementId) {
+        return new DatabaseAccessImplementation().getReimbursementById(reimbursementId);
+    }
 
     void updateStatus(Reimbursement reimbursement) {
         new DatabaseAccessImplementation().updateStatus(reimbursement);
@@ -40,4 +43,6 @@ class ReimbursementService {
     public void updateType(Reimbursement reimbursement) {
         new DatabaseAccessImplementation().updateType(reimbursement);
     }
+
+
 }

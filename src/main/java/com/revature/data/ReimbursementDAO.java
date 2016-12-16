@@ -16,6 +16,13 @@ class ReimbursementDAO {
 
     private Connection conn;
 
+    public Reimbursement viewReimbursementById(int reimbursementId) throws SQLException {
+        List<Reimbursement> reimbursements =
+                viewReimbursements("reimbId", reimbursementId);
+
+        return reimbursements.get(0);
+    }
+
     /**
      * Fetches all reimbursements to be shown to reimbursement manager
      * @return
@@ -32,12 +39,20 @@ class ReimbursementDAO {
      * @throws SQLException
      */
     List<Reimbursement> viewReimbursementsByUserId(int userId) throws SQLException {
-        return viewReimbursements("id", userId);
+        return viewReimbursements("userId", userId);
     }
+
+
+    /**
+     * Overloaded viewReimbursements, accepts and converts int to string
+     * @param sqlCondition
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     List<Reimbursement> viewReimbursements(String sqlCondition, int id) throws SQLException {
         return viewReimbursements(sqlCondition, Integer.toString(id));
     }
-
     /**
      * Returns list of Reimbursements, able to accept various conditions
      * @param sqlCondition
@@ -85,16 +100,16 @@ class ReimbursementDAO {
         PreparedStatement stmt;
 
         switch (sqlCondition) {
-            case "id": {
+            case "userId": {
                 sql += "WHERE r.reimb_author = ?";
                 stmt = conn.prepareStatement(sql);
                 stmt.setInt(1, Integer.parseInt(condition));
                 break;
             }
-            case "email": {
-                sql += "WHERE u.user_email = ?";
+            case "reimbId": {
+                sql += "WHERE r.reimb_id = ?";
                 stmt = conn.prepareStatement(sql);
-                stmt.setString(1, condition);
+                stmt.setInt(1, Integer.parseInt(condition));
                 break;
             }
             //for viewAllReimbursements
@@ -196,8 +211,6 @@ class ReimbursementDAO {
         stmt.executeUpdate();
     }
 
-
-
     void updateReceipt(Reimbursement reimbursement) throws SQLException {
 
     }
@@ -248,6 +261,5 @@ class ReimbursementDAO {
         super();
         this.conn = conn;
     }
-
 
 }

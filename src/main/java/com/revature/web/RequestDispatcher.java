@@ -17,6 +17,10 @@ public class RequestDispatcher extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
         switch (requestURI) {
+            case "/ers/login": {
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+                break;
+            }
             case "/ers/login.do": {
                 try {
                     new FrontController().login(request, response);
@@ -33,7 +37,7 @@ public class RequestDispatcher extends HttpServlet {
                 new FrontController().doMain(request, response);
                 break;
             }
-            case "/ers/index.jsp": {
+            case "/ers/index.html": {
                 new FrontController().doMain(request, response);
                 break;
             }
@@ -45,6 +49,7 @@ public class RequestDispatcher extends HttpServlet {
                 new FrontController().updateType(request, response);
                 break;
             }
+
 
             default: {
                 response.setStatus(404);

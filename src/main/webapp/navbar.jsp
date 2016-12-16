@@ -13,24 +13,30 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Reimbursements</a></li>
                 <li><a href="#">Account</a></li>
-                <li class="dropdown">
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#">
+                        <form action="logout.do" method="post">
+                            <input type="submit" value="Logout" />
+                        </form>
+                    </a>
+                </li>
+                <%--<li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Action</a></li>
                         <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
+                        <li>
+                            <a href="#">
+                                <form action="logout.do" method="post">
+                                    <input type="submit" value="Logout" />
+                                </form>
+                            </a>
+                        </li>
                     </ul>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <%--<li><a href="./">Logout</a></li>--%>
-                <form action="logout.do" method="post">
-                    <input type="submit" value="Logout" />
-                </form>
+                </li>--%>
             </ul>
         </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->

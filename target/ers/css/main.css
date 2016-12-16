@@ -14,10 +14,10 @@
     --bodyFontWeight: 400;
     --bodyLineHeight: 1.5;
 
-    /* Dark Theme*/
+/*    !* Dark Theme*!
     --baseColor: #606468;
     --bodyBackgroundColor: #2c3338;
-    --bodyColor: var(--baseColor);
+    --bodyColor: var(--baseColor);*/
 }
 
 *,

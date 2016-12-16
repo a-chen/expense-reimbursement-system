@@ -29,6 +29,10 @@ public class BusinessDelegate {
         return new ReimbursementService().viewReimbursements(user);
     }
 
+    public Reimbursement viewReimbursementById(int reimbursementId) {
+        return new ReimbursementService().viewReimbursementById(reimbursementId);
+    }
+
     public void updateStatus(Reimbursement reimbursement) {
         new ReimbursementService().updateStatus(reimbursement);
     }
@@ -36,4 +40,5 @@ public class BusinessDelegate {
     public void updateType(Reimbursement reimbursement) {
         new ReimbursementService().updateType(reimbursement);
     }
+
 }

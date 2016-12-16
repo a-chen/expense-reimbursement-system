@@ -40,4 +40,6 @@ public interface DatabaseAccess {
     void updateStatus(Reimbursement reimbursement);
 
     void updateType(Reimbursement reimbursement);
+
+    Reimbursement getReimbursementById(int reimbursementId);
 }

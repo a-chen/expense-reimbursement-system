@@ -7,37 +7,36 @@
 <body>
     <jsp:include page="navbar.jsp" />
 
-    <button id="reimb_table_submit">Save Changes and Reload</button>
     <table id="example" class="display nowrap dataTable dtr-inline collapsed" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
         <thead>
-        <tr role="row">
-            <th></th>
-            <th>Status</th>
-            <th>Type</th>
-            <th>Reimb ID</th>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Date Submitted</th>
-            <th>Date Resolved</th>
-            <th>Resolver</th>
-            <th>Description</th>
-            <th>Email</th>
-        </tr>
+            <tr role="row">
+                <th></th>
+                <th>ID</th>
+                <th>Status</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Description</th>
+                <th>Name</th>
+                <th>Date Submitted</th>
+                <th>Date Resolved</th>
+                <th>Resolver</th>
+                <th>Email</th>
+            </tr>
         </thead>
         <tfoot>
-        <tr>
-            <th></th>
-            <th>Status</th>
-            <th>Type</th>
-            <th>Reimb ID</th>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Date Submitted</th>
-            <th>Date Resolved</th>
-            <th>Resolver</th>
-            <th>Description</th>
-            <th>Email</th>
-        </tr>
+            <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Status</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Description</th>
+                <th>Name</th>
+                <th>Date Submitted</th>
+                <th>Date Resolved</th>
+                <th>Resolver</th>
+                <th>Email</th>
+            </tr>
         </tfoot>
         <tbody>
         <c:forEach var="reimb" items="${reimbursements}">
@@ -46,6 +45,7 @@
                 <td class="edit_row"><a href="#" class="btn btn-info btn-lg">
                     <span class="glyphicon glyphicon-pencil"></span>
                 </a></td>
+                <td class="reimb_id"><c:out value="${reimb.id}" /></td>
                 <td class="reimb_status">
                     <select name="reimb_status" disabled>
                         <c:forEach var="status" items="${statuses}">
@@ -81,13 +81,12 @@
                         </c:forEach>
                     </select>
                 </td>
-                <td class="reimb_id"><c:out value="${reimb.id}" /></td>
-                <td class="reimb_author_name"><c:out value="${reimb.author.lastName}, ${reimb.author.firstName}" /></td>
                 <td class="reimb_amount"><fmt:formatNumber value="${reimb.amount}" type="currency"/></td>
-                <td class="reimb_submit_time"><fmt:formatDate pattern="MM/dd/yyyy hh:mm a" value="${reimb.submitted}"/></td>
-                <td class="reimb_resolved_time"><fmt:formatDate pattern="MM/dd/yyyy hh:mm a" value="${reimb.resolved}"/></td>
-                <td class="reimb_resolver_full_name"><c:out value="${reimb.resolver.firstName} ${reimb.resolver.lastName}" /></td>
                 <td class="reimb_description"><c:out value="${reimb.description}" /></td>
+                <td class="reimb_author_name"><c:out value="${reimb.author.lastName}, ${reimb.author.firstName}" /></td>
+                <td class="reimb_submit_time"><fmt:formatDate pattern="MM/dd/yy hh:mm a" value="${reimb.submitted}"/></td>
+                <td class="reimb_resolved_time"><fmt:formatDate pattern="MM/dd/yy hh:mm a" value="${reimb.resolved}"/></td>
+                <td class="reimb_resolver_full_name"><c:out value="${reimb.resolver.firstName} ${reimb.resolver.lastName}" /></td>
                 <td class="reimb_author_email"><c:out value="${reimb.author.email}" /></td>
             </tr>
         </c:forEach>
