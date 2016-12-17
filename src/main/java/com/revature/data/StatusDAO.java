@@ -50,7 +50,7 @@ class StatusDAO {
         return statuses;
     }
 
-    /**
+    /** @todo move to reimbursementDAO?
      * Updates a reimbursement of given id
      * with the provided status
      * @param reimbursement

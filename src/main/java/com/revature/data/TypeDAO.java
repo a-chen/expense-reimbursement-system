@@ -45,7 +45,8 @@ class TypeDAO {
         return types;
     }
 
-    /**
+
+    /** @todo move to reimbursementDAO?
      * Updates a reimbursement of given id
      * with the provided type
      * @param reimbursement

@@ -59,33 +59,6 @@ class UserDAO {
         return users.get(0);
     }
 
-    User getUserById(int id) throws SQLException {
-
-        String sql = "SELECT ers_user_id, " +
-                "ers_username, " +
-                "ers_password, " +
-                "user_first_name, " +
-                "user_last_name, " +
-                "user_email, " +
-                "user_role_id " +
-                "FROM ers_user " +
-                "WHERE ers_user_id = ?";
-
-        PreparedStatement stmt = conn.prepareStatement(sql);
-
-        stmt.setInt(1, id);
-
-        ResultSet rs = stmt.executeQuery();
-
-        List<User> users = new ArrayList<>();
-        mapUsers(rs, users);
-
-        if (users == null) {
-            return null;
-        }
-        return users.get(0);
-    }
-
     /**
      * Maps each row of ResultSet to User objects
      * @param rs

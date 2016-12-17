@@ -41,4 +41,7 @@ public class BusinessDelegate {
         new ReimbursementService().updateType(reimbursement);
     }
 
+    public void addReimbursement(Reimbursement reimbursement) {
+        new ReimbursementService().addReimbursement(reimbursement);
+    }
 }

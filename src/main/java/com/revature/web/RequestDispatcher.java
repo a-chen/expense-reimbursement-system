@@ -18,7 +18,7 @@ public class RequestDispatcher extends HttpServlet {
         String requestURI = request.getRequestURI();
         switch (requestURI) {
             case "/ers/login": {
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                request.getRequestDispatcher("WEB-INF/secure/login.jsp").forward(request, response);
                 break;
             }
             case "/ers/login.do": {
@@ -47,6 +47,10 @@ public class RequestDispatcher extends HttpServlet {
             }
             case "/ers/updateType.do": {
                 new FrontController().updateType(request, response);
+                break;
+            }
+            case "/ers/addReimbursement.do": {
+                new FrontController().addReimbursement(request, response);
                 break;
             }
 

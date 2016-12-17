@@ -45,4 +45,7 @@ class ReimbursementService {
     }
 
 
+    public void addReimbursement(Reimbursement reimbursement) {
+        new DatabaseAccessImplementation().addReimbursement(reimbursement);
+    }
 }

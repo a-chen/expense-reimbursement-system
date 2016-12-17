@@ -35,4 +35,8 @@ public class FrontController {
     public void updateType(HttpServletRequest request, HttpServletResponse response) throws IOException {
         new MainController().updateType(request, response);
     }
+
+    public void addReimbursement(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        new MainController().addReimbursement(request, response);
+    }
 }

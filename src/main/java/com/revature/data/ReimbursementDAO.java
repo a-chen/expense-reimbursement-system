@@ -16,13 +16,6 @@ class ReimbursementDAO {
 
     private Connection conn;
 
-    public Reimbursement viewReimbursementById(int reimbursementId) throws SQLException {
-        List<Reimbursement> reimbursements =
-                viewReimbursements("reimbId", reimbursementId);
-
-        return reimbursements.get(0);
-    }
-
     /**
      * Fetches all reimbursements to be shown to reimbursement manager
      * @return
@@ -33,7 +26,20 @@ class ReimbursementDAO {
     }
 
     /**
-     * Fetch all Reimbusements for a particular user id
+     * Fetch a reimbursement with specified reimbursement ID
+     * @param reimbursementId
+     * @return
+     * @throws SQLException
+     */
+    public Reimbursement viewReimbursementById(int reimbursementId) throws SQLException {
+        List<Reimbursement> reimbursements =
+                viewReimbursements("reimbId", reimbursementId);
+
+        return reimbursements.get(0);
+    }
+
+    /**
+     * Fetch all Reimbusements for a particular user ID
      * @param userId
      * @return
      * @throws SQLException
@@ -41,7 +47,6 @@ class ReimbursementDAO {
     List<Reimbursement> viewReimbursementsByUserId(int userId) throws SQLException {
         return viewReimbursements("userId", userId);
     }
-
 
     /**
      * Overloaded viewReimbursements, accepts and converts int to string
@@ -186,24 +191,52 @@ class ReimbursementDAO {
         return result;
     }
 
-    void insert(Reimbursement reimbursement) throws SQLException {
-        String sql = "INSERT INTO ers_reimbursement values (?,?,?,?,?,?)";
+
+    /**
+     * Inserts new reimbursement into database
+     * Requires:
+     *  reimbId
+     *  amount
+     *  submitTime(current time)
+     *  author
+     *  status (new reimbursements will give 3 for pending) @todo
+     *  type
+     * @param reimbursement
+     * @throws SQLException
+     */
+    void insertReimbursement(Reimbursement reimbursement) throws SQLException {
+        String sql = "INSERT INTO ers_reimbursement (" +
+                        "reimb_id, " +
+                        "reimb_amount, " +
+                        "reimb_submitted, " +
+                        "reimb_description, " +
+                        "reimb_author, " +
+                        "reimb_status_id, " +
+                        "reimb_type_id) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = conn.prepareStatement(sql);
 
+        //ID will be fetched from db auto sequence
+        //fetched id does not matter
         stmt.setInt(1, reimbursement.getId());
         stmt.setDouble(2, reimbursement.getAmount());
 
         //uses current system time as Timestamp input
         Timestamp currentTime = new Timestamp(System.currentTimeMillis());
         stmt.setTimestamp(3, currentTime);
-
-        stmt.setInt(4, reimbursement.getAuthor().getId());
-        stmt.setInt(5, reimbursement.getStatus().getId());
-        stmt.setInt(6, reimbursement.getType().getId());
+        stmt.setString(4, reimbursement.getDescription());
+        stmt.setInt(5, reimbursement.getAuthor().getId());
+        stmt.setInt(6, reimbursement.getStatus().getId());
+        stmt.setInt(7, reimbursement.getType().getId());
 
         stmt.executeUpdate();
     }
 
+    /**
+     * Updates the description field @todo change from insertReimbursement to update
+     * @param reimbursement
+     * @throws SQLException
+     */
     void updateDescription(Reimbursement reimbursement) throws SQLException {
         String sql = "INSERT INTO ers_reimbursement (reimb_description) values (?)";
         PreparedStatement stmt = conn.prepareStatement(sql);
@@ -215,6 +248,7 @@ class ReimbursementDAO {
 
     }
 
+    //NOT USED? @todo see if can delete
     void updateReimbursementStatus(Reimbursement reimbursement) throws SQLException {
         String sql = "UPDATE ers_reimbursement " +
                      "SET reimb_resolved = ?, " +
@@ -226,6 +260,7 @@ class ReimbursementDAO {
         stmt.setInt(3, reimbursement.getStatus().getId());
         stmt.executeUpdate();
     }
+
 
     void updateResolved(Reimbursement reimbursement) throws SQLException {
         String sql = "INSERT INTO ers_reimbursement (reimb_resolved) values (?)";

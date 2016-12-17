@@ -82,7 +82,7 @@ class MainController {
      *
      * @param request
      * @param response
-     * @return Boolean
+     * @return Boolean if user is logged in
      */
     Boolean checkLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
@@ -105,7 +105,7 @@ class MainController {
             response.sendRedirect("login");
         } else {
             populateReimbursements(request, response);
-            request.getRequestDispatcher("main.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/secure/main.jsp").forward(request, response);
         }
     }
 
@@ -164,5 +164,45 @@ class MainController {
 
         Reimbursement reimbursement = new JSONConverter().getReimbursement(reader.readLine());
         new BusinessDelegate().updateType(reimbursement);
+    }
+
+    /**
+     * Adds new reimbursement to database
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    public void addReimbursement(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        InputStream requestBody = request.getInputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(requestBody));
+
+        Reimbursement reimbursement = new JSONConverter().getReimbursement(reader.readLine());
+
+        /**
+         * Finds a match between reimbursement type and types in the types list
+         * Will set the id of reimbursement type with the one that matches
+         */
+        List<Type> types = (List<Type>) request.getSession().getAttribute("types");
+        for (Type temp : types) {
+            if (reimbursement.getType().getType().equals(temp.getType())) {
+                reimbursement.getType().setId(temp.getId());
+            }
+        }
+        /*
+        setting Reimbursement ID just so it has a value,
+        actual ID will be generated from sequence in db
+         */
+        reimbursement.setId(999);
+        reimbursement.setAuthor((User) request.getSession().getAttribute("user"));
+        //all new reimbursement have status set to pending
+        reimbursement.setStatus(new Status(3, "Pending"));
+        System.out.println(reimbursement);
+
+        new BusinessDelegate().addReimbursement(reimbursement);
+
+        //return Reimbursement object, update the table with new reimbursement
+        String json = new JSONConverter().getJSON(reimbursement);
+        response.setContentType("application/json");
+        response.getWriter().print(json);
     }
 }

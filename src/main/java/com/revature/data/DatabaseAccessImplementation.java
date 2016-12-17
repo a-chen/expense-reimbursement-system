@@ -211,7 +211,26 @@ public class DatabaseAccessImplementation implements DatabaseAccess {
 
     @Override
     public void addReimbursement(Reimbursement reimbursement) {
+        Connection conn = null;
+        List<Reimbursement> reimbursements = null;
 
+        try {
+            conn = ServiceLocator.getERSDatabase().getConnection();
+            conn.setAutoCommit(false); // enables transaction
+
+            ReimbursementDAO reimbursementDAO = new ReimbursementDAO(conn);
+
+            reimbursementDAO.insertReimbursement(reimbursement);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
