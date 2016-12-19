@@ -39,4 +39,8 @@ public class FrontController {
     public void addReimbursement(HttpServletRequest request, HttpServletResponse response) throws IOException {
         new MainController().addReimbursement(request, response);
     }
+
+    public void errorPage(HttpServletRequest request, HttpServletResponse response, String error) throws ServletException, IOException {
+        new MainController().errorPage(request, response, error);
+    }
 }

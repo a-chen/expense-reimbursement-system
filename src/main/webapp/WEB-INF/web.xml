@@ -26,4 +26,18 @@
         <url-pattern>login</url-pattern>
     </servlet-mapping>
 
+    <!--Errors-->
+    <servlet-mapping>
+        <servlet-name>Dispatcher</servlet-name>
+        <url-pattern>403</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Dispatcher</servlet-name>
+        <url-pattern>404</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Dispatcher</servlet-name>
+        <url-pattern>500</url-pattern>
+    </servlet-mapping>
+
 </web-app>

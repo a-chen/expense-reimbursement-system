@@ -40,8 +40,8 @@ class MainController {
         BusinessDelegate businessDelegate = new BusinessDelegate();
 
         User user = businessDelegate.login(
-                request.getParameter("username"),
-                request.getParameter("password"));
+                request.getParameter("username").trim(),
+                request.getParameter("password").trim());
 
         //stores user data in cookie
         if (user != null) {
@@ -204,5 +204,14 @@ class MainController {
         String json = new JSONConverter().getJSON(reimbursement);
         response.setContentType("application/json");
         response.getWriter().print(json);
+    }
+
+    public void errorPage(HttpServletRequest request, HttpServletResponse response, String error) throws ServletException, IOException {
+        if(error.equals("403"))
+            request.getRequestDispatcher("/403.html").forward(request, response);
+        if(error.equals("404"))
+            request.getRequestDispatcher("/404.html").forward(request, response);
+        if(error.equals("500"))
+            request.getRequestDispatcher("/500.html").forward(request, response);
     }
 }

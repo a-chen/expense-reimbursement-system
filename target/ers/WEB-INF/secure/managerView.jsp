@@ -76,7 +76,7 @@
                 </select>
             </td>
             <td class="reimb_amount"><fmt:formatNumber value="${reimb.amount}" type="currency"/></td>
-            <td class="reimb_description"><c:out value="${reimb.description}" /></td>
+            <a class="reimb_description" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam semper finibus elementum. Integer fringilla lectus vitae porta scelerisque. Suspendisse sollicitudin eros felis, a vestibulum magna bibendum et. Sed magna dui, elementum eu dui eu, ornare varius sem. Suspendisse lacus mi, fringilla non ultrices eget, porta eu velit. Aenean ut massa."><td ><c:out value="${reimb.description}" /></td></a>
             <td class="reimb_author_name"><c:out value="${reimb.author.lastName}, ${reimb.author.firstName}" /></td>
             <td class="reimb_submit_time"><fmt:formatDate pattern="MM/dd/yy hh:mm a" value="${reimb.submitted}"/></td>
             <td class="reimb_resolved_time"><fmt:formatDate pattern="MM/dd/yy hh:mm a" value="${reimb.resolved}"/></td>

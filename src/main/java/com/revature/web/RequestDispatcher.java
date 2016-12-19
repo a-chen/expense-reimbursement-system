@@ -55,6 +55,21 @@ public class RequestDispatcher extends HttpServlet {
             }
 
 
+            //Errors
+            case "/ers/403": {
+                new FrontController().errorPage(request, response, "403");
+                break;
+            }
+            case "/ers/404": {
+                new FrontController().errorPage(request, response, "404");
+                break;
+            }
+            case "/ers/500": {
+                new FrontController().errorPage(request, response, "500");
+                break;
+            }
+
+
             default: {
                 response.setStatus(404);
             }

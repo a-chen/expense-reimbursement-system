@@ -23,6 +23,7 @@
     </tr>
     </tfoot>
     <tbody>
+
     <c:forEach var="reimb" items="${reimbursements}">
         <tr disabled>
             <td class="reimb_status"><c:out value="${reimb.status.status}"/></td>

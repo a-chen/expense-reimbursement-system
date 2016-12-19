@@ -230,6 +230,11 @@ class ReimbursementDAO {
         stmt.setInt(7, reimbursement.getType().getId());
 
         stmt.executeUpdate();
+//         todo need to get generated key to fetch the inserted row by id
+        ResultSet rs = stmt.getGeneratedKeys();
+        if (rs.next()) {
+            System.out.println("Generated key: " + rs.getString(1));
+        }
     }
 
     /**
