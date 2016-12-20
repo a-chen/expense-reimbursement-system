@@ -16,6 +16,11 @@ class ReimbursementDAO {
 
     private Connection conn;
 
+    ReimbursementDAO(Connection conn) {
+        super();
+        this.conn = conn;
+    }
+
     /**
      * Fetches all reimbursements to be shown to reimbursement manager
      * @return
@@ -189,8 +194,7 @@ class ReimbursementDAO {
             result.add(reimbursement);
         }
         return result;
-    }
-
+    } // viewReimbursements
 
     /**
      * Inserts new reimbursement into database
@@ -199,7 +203,7 @@ class ReimbursementDAO {
      *  amount
      *  submitTime(current time)
      *  author
-     *  status (new reimbursements will give 3 for pending) @todo
+     *  status (new reimbursements will give 3 for pending)
      *  type
      * @param reimbursement
      * @throws SQLException
@@ -235,71 +239,80 @@ class ReimbursementDAO {
         if (rs.next()) {
             System.out.println("Generated key: " + rs.getString(1));
         }
-    }
+    } //insertReimbursement
 
     /**
-     * Updates the description field @todo change from insertReimbursement to update
+     * Updates a reimbursement of given id
+     * with the provided status
      * @param reimbursement
      * @throws SQLException
      */
-    void updateDescription(Reimbursement reimbursement) throws SQLException {
-        String sql = "INSERT INTO ers_reimbursement (reimb_description) values (?)";
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setString(1, reimbursement.getDescription());
-        stmt.executeUpdate();
-    }
-
-    void updateReceipt(Reimbursement reimbursement) throws SQLException {
-
-    }
-
-    //NOT USED? @todo see if can delete
-    void updateReimbursementStatus(Reimbursement reimbursement) throws SQLException {
-        String sql = "UPDATE ers_reimbursement " +
-                     "SET reimb_resolved = ?, " +
-                         "reimb_resolver = ?, " +
-                         "reimb_type_id = ?";
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setTimestamp(1, reimbursement.getResolved());
-        stmt.setInt(2, reimbursement.getResolver().getId());
-        stmt.setInt(3, reimbursement.getStatus().getId());
-        stmt.executeUpdate();
-    }
-
-
-    void updateResolved(Reimbursement reimbursement) throws SQLException {
-        String sql = "INSERT INTO ers_reimbursement (reimb_resolved) values (?)";
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setTimestamp(1, reimbursement.getResolved());
-        stmt.executeUpdate();
-    }
-
-    void updateResolver(Reimbursement reimbursement) throws SQLException {
-        String sql = "INSERT INTO ers_reimbursement (reimb_resolver) values (?)";
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setInt(1, reimbursement.getResolver().getId());
-        stmt.executeUpdate();
-    }
-
     void updateStatus(Reimbursement reimbursement) throws SQLException {
-        String sql = "UPDATE ers_reimbursement SET reimb_status_id = ? WHERE reimb_id = ?";
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setInt(1, reimbursement.getStatus().getId());
-        stmt.setInt(2, reimbursement.getId());
-        stmt.executeUpdate();
-    }
+        String status = reimbursement.getStatus().getStatus();
+        User resolver = reimbursement.getResolver();
+        String sql;
 
+        PreparedStatement stmt = null;
+
+         /*
+         updates resolver and resolve date if status
+         is set to something other than pending
+          */
+        if ( !status.equals("Pending")) {
+            Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+            sql =  "UPDATE ers_reimbursement r " +
+                    "SET r.reimb_status_id = " +
+                    "(SELECT s.reimb_status_id " +
+                    "FROM ers_reimbursement_status s " +
+                    "WHERE reimb_status = ?), " +
+                    "reimb_resolved = ?, " +
+                    "reimb_resolver = ? " +
+                    "WHERE reimb_id = ?";
+
+            stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, reimbursement.getStatus().getStatus());
+            stmt.setTimestamp(2, currentTime);
+            stmt.setInt(3, resolver.getId());
+            stmt.setInt(4, reimbursement.getId());
+
+        } else {
+            sql =  "UPDATE ers_reimbursement r " +
+                    "SET r.reimb_status_id = " +
+                    "(SELECT s.reimb_status_id " +
+                    "FROM ers_reimbursement_status s " +
+                    "WHERE reimb_status = ?) " +
+                    "WHERE reimb_id = ?";
+            stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, reimbursement.getStatus().getStatus());
+            stmt.setInt(2, reimbursement.getId());
+        }
+
+        stmt.executeQuery();
+    } //updateStatus
+
+    /**
+     * Updates a reimbursement of given id
+     * with the provided type
+     * @param reimbursement
+     * @throws SQLException
+     */
     void updateType(Reimbursement reimbursement) throws SQLException {
-        String sql = "UPDATE ers_reimbursement SET imb_type_id = ? WHERE reimb_id = ?";
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setInt(1, reimbursement.getType().getId());
-        stmt.setInt(2, reimbursement.getId());
-        stmt.executeUpdate();
-    }
+        String sql = "UPDATE ers_reimbursement r " +
+                "SET r.reimb_type_id = " +
+                "(SELECT s.reimb_type_id " +
+                "FROM ers_reimbursement_type s " +
+                "WHERE reimb_type = ?) " +
+                "WHERE reimb_id = ?";
 
-    ReimbursementDAO(Connection conn) {
-        super();
-        this.conn = conn;
-    }
+        PreparedStatement stmt = conn.prepareStatement(sql);
+
+        stmt.setString(1, reimbursement.getType().getType());
+        stmt.setInt(2, reimbursement.getId());
+
+        stmt.executeQuery();
+    } //updateType
+
 
 }

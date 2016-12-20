@@ -24,7 +24,7 @@ public class ExpenseReimbursementSystem {
 
             Reimbursement reimbursement = null;
 
-            new StatusDAO(conn).updateStatus(reimbursement);
+            new ReimbursementDAO(conn).updateStatus(reimbursement);
 
         } catch (SQLException e) {
             e.printStackTrace();

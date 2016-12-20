@@ -71,7 +71,7 @@ public class DatabaseAccessImplementation implements DatabaseAccess {
             conn = ServiceLocator.getERSDatabase().getConnection();
             conn.setAutoCommit(false); // enables transaction
 
-            new StatusDAO(conn).updateStatus(reimbursement);
+            new ReimbursementDAO(conn).updateStatus(reimbursement);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -91,7 +91,7 @@ public class DatabaseAccessImplementation implements DatabaseAccess {
             conn = ServiceLocator.getERSDatabase().getConnection();
             conn.setAutoCommit(false); // enables transaction
 
-            new TypeDAO(conn).updateType(reimbursement);
+            new ReimbursementDAO(conn).updateType(reimbursement);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

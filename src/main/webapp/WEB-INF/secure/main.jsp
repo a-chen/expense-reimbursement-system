@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div> <!-- /reimbursement modal -->
-        
+
         <%--Loads different views for each role--%>
         <c:choose>
             <c:when test="${user.role.role == 'HR'

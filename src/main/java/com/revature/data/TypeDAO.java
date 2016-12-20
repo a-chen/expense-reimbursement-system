@@ -45,26 +45,4 @@ class TypeDAO {
         return types;
     }
 
-
-    /** @todo move to reimbursementDAO?
-     * Updates a reimbursement of given id
-     * with the provided type
-     * @param reimbursement
-     * @throws SQLException
-     */
-    void updateType(Reimbursement reimbursement) throws SQLException {
-        String sql = "UPDATE ers_reimbursement r " +
-                     "SET r.reimb_type_id = " +
-                         "(SELECT s.reimb_type_id " +
-                         "FROM ers_reimbursement_type s " +
-                         "WHERE reimb_type = ?) " +
-                     "WHERE reimb_id = ?";
-
-        PreparedStatement stmt = conn.prepareStatement(sql);
-
-        stmt.setString(1, reimbursement.getType().getType());
-        stmt.setInt(2, reimbursement.getId());
-
-        stmt.executeQuery();
-    }
 }

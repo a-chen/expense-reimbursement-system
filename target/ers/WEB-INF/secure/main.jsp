@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div> <!-- /reimbursement modal -->
-        <a href="#" title="Header" data-toggle="popover" data-placement="top" data-content="Content">Top</a>
+
         <%--Loads different views for each role--%>
         <c:choose>
             <c:when test="${user.role.role == 'HR'

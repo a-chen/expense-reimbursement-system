@@ -144,6 +144,8 @@ class MainController {
         //Converts Reimbursement object to JSON and passes it with request
         Reimbursement fetchedReimbursement = businessDelegate.viewReimbursementById(reimbursement.getId());
 
+        System.out.println(fetchedReimbursement);
+
         String json = new JSONConverter().getJSON(fetchedReimbursement);
         response.setContentType("application/json");
         response.getWriter().print(json);

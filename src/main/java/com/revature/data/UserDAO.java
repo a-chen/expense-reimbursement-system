@@ -32,16 +32,19 @@ class UserDAO {
      */
     User getUserByUserName(String username) throws SQLException {
 
-        String sql = "SELECT ers_user_id, " +
-                        "ers_username, " +
-                        "ers_password, " +
-                        "user_first_name, " +
-                        "user_last_name, " +
-                        "user_email, " +
-                        "user_role_id " +
-                     "FROM ers_user " +
-                     "WHERE ers_username = ? " +
-                 "       OR user_email = ?";
+        String sql =    "SELECT ers_user_id, " +
+                            "ers_username, " +
+                            "ers_password, " +
+                            "user_first_name, " +
+                            "user_last_name, " +
+                            "user_email, " +
+                            "user_role_id, " +
+                            "user_role " +
+                        "FROM ers_user " +
+                            "JOIN ers_user_roles " +
+                                "ON user_role_id = ers_user_role_id " +
+                        "WHERE ers_username = ? " +
+                            "OR user_email = ?";
 
         PreparedStatement stmt = conn.prepareStatement(sql);
 
@@ -66,7 +69,6 @@ class UserDAO {
      * @throws SQLException
      */
     private void mapUsers(ResultSet rs, List<User> users) throws SQLException {
-        RoleDAO roleDAO = new RoleDAO(conn);
 
         while (rs.next()) {
             int id = rs.getInt("ers_user_id");
@@ -76,11 +78,14 @@ class UserDAO {
             String firstName = rs.getString("user_first_name");
             String email = rs.getString("user_email");
             int roleId = rs.getInt("user_role_id");
+            String role = rs.getString("user_role");
 
-            Role role = roleDAO.getRoleById(roleId);
+            Role roleObj = new Role();
+            roleObj.setId(roleId);
+            roleObj.setRole(role);
 
             //map ResultSet to User object
-            User user = new User(id, username, password, lastName, firstName, email, role);
+            User user = new User(id, username, password, lastName, firstName, email, roleObj);
             users.add(user);
         }
     }
