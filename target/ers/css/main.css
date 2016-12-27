@@ -14,10 +14,6 @@
     --bodyFontWeight: 400;
     --bodyLineHeight: 1.5;
 
-/*    !* Dark Theme*!
-    --baseColor: #606468;
-    --bodyBackgroundColor: #2c3338;
-    --bodyColor: var(--baseColor);*/
 }
 
 *,
@@ -165,9 +161,9 @@ body {
 
         --loginLabelBackgroundColor: #363b41;
 
-        --loginSubmitBackgroundColor: #768aea;
+        --loginSubmitBackgroundColor: #1FA9D6;
         --loginSubmitColor: #eee;
-        --loginSubmitHoverBackgroundColor: #7a93d4;
+        --loginSubmitHoverBackgroundColor: #1ea2d6;
     }
 
     .login {
@@ -246,4 +242,7 @@ label {
 
 select[disabled] {
     background-color: #E0E0E0;
+}
+table {
+    font-size: 14px;
 }

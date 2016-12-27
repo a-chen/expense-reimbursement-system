@@ -27,17 +27,17 @@
     </servlet-mapping>
 
     <!--Errors-->
-    <servlet-mapping>
-        <servlet-name>Dispatcher</servlet-name>
-        <url-pattern>403</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Dispatcher</servlet-name>
-        <url-pattern>404</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Dispatcher</servlet-name>
-        <url-pattern>500</url-pattern>
-    </servlet-mapping>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/403.html</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.html</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/500.html</location>
+    </error-page>
 
 </web-app>

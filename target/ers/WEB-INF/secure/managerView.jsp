@@ -14,7 +14,6 @@
         <th>Date Submitted</th>
         <th>Date Resolved</th>
         <th>Resolver</th>
-        <th>Email</th>
     </tr>
     </thead>
     <tfoot>
@@ -29,7 +28,6 @@
         <th>Date Submitted</th>
         <th>Date Resolved</th>
         <th>Resolver</th>
-        <th>Email</th>
     </tr>
     </tfoot>
     <tbody>
@@ -81,7 +79,6 @@
             <td class="reimb_submit_time"><fmt:formatDate pattern="MM/dd/yy hh:mm a" value="${reimb.submitted}"/></td>
             <td class="reimb_resolved_time"><fmt:formatDate pattern="MM/dd/yy hh:mm a" value="${reimb.resolved}"/></td>
             <td class="reimb_resolver_full_name"><c:out value="${reimb.resolver.firstName} ${reimb.resolver.lastName}" /></td>
-            <td class="reimb_author_email"><c:out value="${reimb.author.email}" /></td>
         </tr>
     </c:forEach>
     </tbody>

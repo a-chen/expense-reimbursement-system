@@ -3,7 +3,8 @@ $( document ).ready(function() {
     //Initialize data table
     $(document).ready( function () {
         $('#reimb_table').DataTable({
-            "lengthMenu": [ 50, 100 ]
+            "lengthMenu": [ 10, 20, 30, 50, 100 ],
+            "pageLength": 10
         });
     });
 
@@ -63,13 +64,29 @@ $( document ).ready(function() {
     $("#reimbursement_submit").click(function () {
         console.log("submit button clicked");
         //check if all the fields are filled out
-        amount = $.trim($("#reimb_submit_amount").val());
-        description = $.trim($("#reimb_submit_description").val());
-        type = $.trim($("#reimb_submit_type").val());
+        var amount = $.trim($("#reimb_submit_amount").val());
+        var description = $.trim($("#reimb_submit_description").val());
+        var type = $.trim($("#reimb_submit_type").val());
+
+        var reimbursementObj = JSON.stringify({amount:amount});
+
+        //makes amount null if does not pass validation, which will fail submit
+        $.ajax({
+            method:"POST",
+            url:"validateInputAmount.do",
+            data: reimbursementObj,
+            success: function (data) {
+                reimbursement = data;
+                console.log("Returned reimbursement amount is: " + reimbursement.amount);
+                if(reimbursement.amount == 0) {
+                    amount = null;
+                }
+            }
+        });
 
         if(!amount || !description || !type) {
             $("#reimbursement_submit").popover("show");
-            console.log("Please make sure all fields are filled out");
+            console.log("Please use proper syntax and fill out all fields");
         } else { //if input is not empty
             //closes the modal
             $('#reimbursementModal').modal('toggle');
@@ -87,9 +104,9 @@ $( document ).ready(function() {
      * upon any keypress within reimbursement modal
      */
     $("#reimbursementModal").keyup(function () {
-        amount = $.trim($("#reimb_submit_amount").val());
-        description = $.trim($("#reimb_submit_description").val());
-        type = $.trim($("#reimb_submit_type").val());
+        var amount = $.trim($("#reimb_submit_amount").val());
+        var description = $.trim($("#reimb_submit_description").val());
+        var type = $.trim($("#reimb_submit_type").val());
 
         if(!amount || !description || !type) {
             if(!($('.popover-content').length > 0)) {
@@ -141,8 +158,6 @@ $( document ).ready(function() {
             data: reimbursementObj,
             success: function (data) {
                 result = data;
-
-                console.log(result.status.status);
 
                 /**
                  * Sets resolver fields in the table

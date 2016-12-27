@@ -53,22 +53,10 @@ public class RequestDispatcher extends HttpServlet {
                 new FrontController().addReimbursement(request, response);
                 break;
             }
-
-
-            //Errors
-            case "/ers/403": {
-                new FrontController().errorPage(request, response, "403");
+            case "/ers/validateInputAmount.do": {
+                new FrontController().validateAmount(request, response);
                 break;
             }
-            case "/ers/404": {
-                new FrontController().errorPage(request, response, "404");
-                break;
-            }
-            case "/ers/500": {
-                new FrontController().errorPage(request, response, "500");
-                break;
-            }
-
 
             default: {
                 response.setStatus(404);

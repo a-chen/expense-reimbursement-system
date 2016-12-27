@@ -144,8 +144,6 @@ class MainController {
         //Converts Reimbursement object to JSON and passes it with request
         Reimbursement fetchedReimbursement = businessDelegate.viewReimbursementById(reimbursement.getId());
 
-        System.out.println(fetchedReimbursement);
-
         String json = new JSONConverter().getJSON(fetchedReimbursement);
         response.setContentType("application/json");
         response.getWriter().print(json);
@@ -198,7 +196,6 @@ class MainController {
         reimbursement.setAuthor((User) request.getSession().getAttribute("user"));
         //all new reimbursement have status set to pending
         reimbursement.setStatus(new Status(3, "Pending"));
-        System.out.println(reimbursement);
 
         new BusinessDelegate().addReimbursement(reimbursement);
 
@@ -208,12 +205,25 @@ class MainController {
         response.getWriter().print(json);
     }
 
-    public void errorPage(HttpServletRequest request, HttpServletResponse response, String error) throws ServletException, IOException {
-        if(error.equals("403"))
-            request.getRequestDispatcher("/403.html").forward(request, response);
-        if(error.equals("404"))
-            request.getRequestDispatcher("/404.html").forward(request, response);
-        if(error.equals("500"))
-            request.getRequestDispatcher("/500.html").forward(request, response);
+    void validateAmount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        InputStream requestBody = request.getInputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(requestBody));
+        Reimbursement reimbursement = new JSONConverter().getReimbursement(reader.readLine());
+        Double amount = reimbursement.getAmount();
+
+        System.out.println("Main controller, amount double is " + amount);
+        boolean validAmount = new BusinessDelegate().validateAmount(amount);
+        System.out.println("validAmount is " + validAmount);
+        if (validAmount) {
+            reimbursement.setAmount(1);
+            System.out.println("Setting reimbursement amount to 1: " + reimbursement.getAmount());
+        } else {
+            reimbursement.setAmount(0);
+            System.out.println("Setting reimbursement amount to 0: " + reimbursement.getAmount());
+
+        }
+        String json = new JSONConverter().getJSON(reimbursement);
+        response.setContentType("application/json");
+        response.getWriter().print(json);
     }
 }

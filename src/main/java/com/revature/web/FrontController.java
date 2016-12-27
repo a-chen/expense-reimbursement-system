@@ -40,7 +40,8 @@ public class FrontController {
         new MainController().addReimbursement(request, response);
     }
 
-    public void errorPage(HttpServletRequest request, HttpServletResponse response, String error) throws ServletException, IOException {
-        new MainController().errorPage(request, response, error);
+    public void validateAmount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        new MainController().validateAmount(request, response);
     }
+
 }

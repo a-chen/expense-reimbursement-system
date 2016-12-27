@@ -44,4 +44,9 @@ public class BusinessDelegate {
     public void addReimbursement(Reimbursement reimbursement) {
         new ReimbursementService().addReimbursement(reimbursement);
     }
+
+    public boolean validateAmount(double inputAmount) {
+        System.out.println("Business delegate sending to reimbservice with value " + inputAmount);
+        return new ReimbursementService().validateAmount(inputAmount);
+    }
 }
