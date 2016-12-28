@@ -7,6 +7,7 @@
     <body>
         <jsp:include page="navbar.jsp" />
 
+        <div id="content-container">
         <%--Loads different views for each role--%>
         <c:choose>
             <c:when test="${user.role.role == 'HR'
@@ -17,6 +18,6 @@
                 <jsp:include page="employeeView.jsp" />
             </c:otherwise>
         </c:choose>
-
+        </div>
     </body>
 </html>

@@ -186,6 +186,7 @@ $( document ).ready(function() {
      */
     $('.reimb_type').change(function(){
 
+        var that = $(this);
         reimb_id = $(this).closest('tr').find('.reimb_id').text();
         reimb_type = $(this).closest('tr').find("select[name='reimb_type']").val();
 

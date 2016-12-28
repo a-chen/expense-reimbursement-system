@@ -246,3 +246,7 @@ select[disabled] {
 table {
     font-size: 14px;
 }
+
+#content-container {
+    margin-left:10px;
+}
